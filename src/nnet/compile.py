@@ -4,4 +4,5 @@ def compile_nnet(model):
         loss='sparse_categorical_crossentropy',
         metrics=['accuracy'],
     )
+
     return model
