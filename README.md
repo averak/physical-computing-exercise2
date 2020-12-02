@@ -28,3 +28,11 @@ $ cd <this repo>
 $ cd src
 $ pipenv install
 ```
+
+## Usage
+
+See `scripts` section of [Pipfile](./src/Pipfile)
+
+* `pipenv run test`
+* `pipenv run format`
+* `pipenv run lint`
