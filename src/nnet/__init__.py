@@ -1,12 +1,24 @@
-from .nnet import make_nnet
-from .compile import compile_nnet
-from .train import train_nnet
-from .predict import predict
+import os
+import numpy as np
 
 
-__all__ = [
-    'make_nnet',
-    'compile_nnet',
-    'train_nnet',
-    'predict',
-]
+class Model:
+    def __init__(self, vec_length=30, n_class=10, load_weights=False, model_file='nnet.h5'):
+        self.__model_path = '%s/ckpt/%s' % (
+            os.path.dirname(__file__), model_file)
+
+        from .make import make_nnet
+
+        self.__nnet = make_nnet((vec_length,), n_class)
+
+    def train(self, x, y, save_weights=False):
+        from .compile import compile_nnet
+        from .train import train_nnet
+
+        self.__nnet = compile_nnet(self.__nnet)
+        self.__nnet = train_nnet(self.__nnet, x, y, save_weights)
+
+    def predict(self, x):
+        from .predict import predict
+
+        return np.argmax(predict(self.__nnet, x))
