@@ -9,7 +9,7 @@ class Model:
 
         from .make import make_nnet
 
-        self.__nnet = make_nnet((vec_length,), n_class)
+        self.__nnet = make_nnet((vec_length,), n_class, load_weights)
 
     def train(self, x, y, save_weights=False):
         from .compile import compile_nnet
