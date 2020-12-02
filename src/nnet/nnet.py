@@ -2,7 +2,7 @@ import tensorflow.keras.layers as layers
 from tensorflow.keras import Model
 
 
-def dnn(input_shape, n_class):
+def make_nnet(input_shape, n_class):
     input_layer = layers.Input(shape=input_shape)
 
     hidden_layer1 = layers.Dense(64, activation='relu')(input_layer)
