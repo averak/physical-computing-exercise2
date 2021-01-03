@@ -13,18 +13,21 @@ class TestKey(unittest.TestCase):
         self.key_vector.reset()
         vector = self.key_vector.vector
         self.assertTrue(isinstance(vector, np.ndarray))
-        self.assertEqual(len(vector), self.length)
+        self.assertEqual(self.length, len(vector))
 
     def test_vector_push(self):
         self.key_vector.reset()
         self.key_vector.push(100)
+        self.key_vector.push(200)
+        self.key_vector.push(300)
         vector = self.key_vector.vector
-        self.assertEqual(vector[0], 100)
+        self.assertEqual(100, vector[0])
+        self.assertEqual(200, vector[1])
+        self.assertEqual(300, vector[2])
 
-    '''
     def test_preprocessing(self):
-        x = np.array([[1, 1, 1]])
-        x = key_vector.preprocessing(x)[0]
-        self.assertEqual(key_vector.VEC_SIZE, len(x))
-        self.assertEqual([1 / 226], x[0])
-    '''
+        self.key_vector.reset()
+        self.key_vector.push(1)
+        self.key_vector.preprocessing()
+        vector = self.key_vector.vector
+        self.assertEqual([1 / 226], vector[0])
