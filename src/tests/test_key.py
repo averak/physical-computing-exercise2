@@ -1,6 +1,5 @@
 import unittest
 import numpy as np
-import key.vector as key_vector
 from key.vector import KeyVector
 
 

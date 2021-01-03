@@ -2,9 +2,6 @@ import numpy as np
 import datetime
 import glob
 
-DATA_DIR = 'data'
-VEC_SIZE = 30
-
 
 class KeyVector:
     def __init__(self, length: int):

@@ -1,13 +1,12 @@
 import unittest
 import numpy as np
 import nnet
-from key.vector import VEC_SIZE
-
-N_CLASS = 10
 
 
 class TestNnet(unittest.TestCase):
     def setUp(self):
+        self.length = 30
+        self.n_class = 10
         self.model = nnet.Model(model_file='test.h5')
 
     def test_train_nnet(self):
@@ -15,11 +14,11 @@ class TestNnet(unittest.TestCase):
         x = []
         y = []
         for i in range(20):
-            x.append([np.random.rand() for _ in range(VEC_SIZE)])
-            y.append(i % N_CLASS)
+            x.append([np.random.rand() for _ in range(self.length)])
+            y.append(i % self.n_class)
 
         self.model.train(x, y, save_weights=True)
 
     def test_predict(self):
-        sample_x = [np.random.rand() for _ in range(VEC_SIZE)]
+        sample_x = [np.random.rand() for _ in range(self.length)]
         self.model.predict(sample_x)
