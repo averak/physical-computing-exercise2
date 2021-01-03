@@ -1,4 +1,6 @@
+import copy
 import numpy as np
+
 from . import DEFAULT_LENGTH
 
 
@@ -39,6 +41,6 @@ class KeyVector:
 
     @property
     def vector(self):
-        result = self._vector
+        result = copy.deepcopy(self._vector)
         result += [0] * (self.length - len(result))
         return np.array(result)
