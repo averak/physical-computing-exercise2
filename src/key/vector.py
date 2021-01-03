@@ -24,8 +24,8 @@ class KeyVector:
             self._vector.append(key)
 
     def preprocessing(self):
-        # FIXME: 未実装
-        pass
+        # 正規化
+        self._vector = (lambda vec: [key / 226 for key in vec])(self.vector)
 
     @property
     def length(self):
