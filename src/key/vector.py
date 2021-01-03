@@ -22,7 +22,8 @@ class KeyVector:
 
     def preprocessing(self):
         # 正規化
-        self._vector = (lambda vec: [key / 226 for key in vec])(self.vector)
+        if np.sum(self.vector > 1):
+            self._vector = (lambda vec: [key / 226 for key in vec])(self.vector)
 
     @property
     def length(self):

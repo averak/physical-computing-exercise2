@@ -27,10 +27,10 @@ class TestKey(unittest.TestCase):
 
     def test_preprocessing(self):
         self.key_vector.reset()
-        self.key_vector.push(1)
+        self.key_vector.push(100)
         self.key_vector.preprocessing()
         vector = self.key_vector.vector
-        self.assertEqual([1 / 226], vector[0])
+        self.assertEqual([100 / 226], vector[0])
 
     def test_repository(self):
         self.key_repository.store(self.key_vector, '0', False)
