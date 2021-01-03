@@ -11,7 +11,7 @@ class TestKey(unittest.TestCase):
         self.assertEqual(key_vector.VEC_SIZE, len(x))
         self.assertEqual([1 / 226], x[0])
 
-    def test_hundler(self):
+    def test_handler(self):
         length = 30
         key_handler = KeyHandler(length)
         self.assertEqual(key_handler.keys, [0] * length)
