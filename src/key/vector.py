@@ -21,9 +21,17 @@ class KeyVector:
             self._vector.append(key)
 
     def preprocessing(self):
+        max_key = 226
+
+        def proc(lamb): return [lamb(key) for key in self.vector]
+
+        # 外れ値処理
+        self._vector = proc(lambda key: 0 if key < 0 else key)
+        self._vector = proc(lambda key: 0 if key > max_key else key)
+
         # 正規化
         if np.sum(self.vector > 1):
-            self._vector = (lambda vec: [key / 226 for key in vec])(self.vector)
+            self._vector = proc(lambda key: key / max_key)
 
     @property
     def length(self):
