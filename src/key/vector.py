@@ -1,17 +1,15 @@
 import numpy as np
+from . import DEFAULT_LENGTH
 
 
 class KeyVector:
-    def __init__(self, length=None, vector=None):
-        if length is None and vector is None:
-            raise Exception('length / vectorのいずれかを指定してください')
-
-        if length is None:
-            self._length = len(vector)
-            self._vector = list(vector)
-        else:
+    def __init__(self, length=DEFAULT_LENGTH, vector=None):
+        if vector is None:
             self._length = length
             self._vector = []
+        else:
+            self._length = len(vector)
+            self._vector = list(vector)
 
         self.reset()
 

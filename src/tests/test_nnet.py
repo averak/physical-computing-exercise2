@@ -1,11 +1,12 @@
 import unittest
 import numpy as np
 import nnet
+from key import DEFAULT_LENGTH
 
 
 class TestNnet(unittest.TestCase):
     def setUp(self):
-        self.length = 30
+        self.length = DEFAULT_LENGTH
         self.n_class = 10
         self.model = nnet.Model(model_file='test.h5')
 

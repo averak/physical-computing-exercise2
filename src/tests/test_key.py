@@ -6,15 +6,14 @@ from key.repository import KeyRepository
 
 class TestKey(unittest.TestCase):
     def setUp(self):
-        self.length = 30
-        self.key_vector = KeyVector(self.length)
+        self.key_vector = KeyVector()
         self.key_repository = KeyRepository()
 
     def test_vector(self):
         self.key_vector.reset()
         vector = self.key_vector.vector
         self.assertTrue(isinstance(vector, np.ndarray))
-        self.assertEqual(self.length, len(vector))
+        self.assertEqual(self.key_vector.length, len(vector))
 
     def test_vector_push(self):
         self.key_vector.reset()
