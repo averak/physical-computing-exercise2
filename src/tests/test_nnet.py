@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 import nnet
-from key_vector import VEC_SIZE
+from key.vector import VEC_SIZE
 
 N_CLASS = 10
 
