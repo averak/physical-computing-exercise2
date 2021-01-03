@@ -6,6 +6,25 @@ DATA_DIR = 'data'
 VEC_SIZE = 30
 
 
+class KeyVector:
+    def __init__(self, length):
+        self._length = length
+        self._vector = []
+
+        self.reset()
+
+    def reset(self):
+        self._vector = [0] * self.length
+
+    @property
+    def length(self):
+        return self._length
+
+    @property
+    def vector(self):
+        return self._vector
+
+
 def extract_class_name(file_name):
     return file_name.split('/')[-2]
 
