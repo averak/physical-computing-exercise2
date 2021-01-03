@@ -1,15 +1,17 @@
 import numpy as np
-import datetime
-import glob
 
 
 class KeyVector:
-    def __init__(self, length: int):
-        if length <= 0:
-            raise Exception('lengthは自然数を指定してください')
+    def __init__(self, length=None, vector=None):
+        if length is None and vector is None:
+            raise Exception('length / vectorのいずれかを指定してください')
 
-        self._length = length
-        self._vector = []
+        if length is None:
+            self._length = len(vector)
+            self._vector = list(vector)
+        else:
+            self._length = length
+            self._vector = []
 
         self.reset()
 

@@ -1,12 +1,14 @@
 import unittest
 import numpy as np
 from key.vector import KeyVector
+from key.repository import KeyRepository
 
 
 class TestKey(unittest.TestCase):
     def setUp(self):
         self.length = 30
         self.key_vector = KeyVector(self.length)
+        self.key_repository = KeyRepository()
 
     def test_vector(self):
         self.key_vector.reset()
@@ -30,3 +32,8 @@ class TestKey(unittest.TestCase):
         self.key_vector.preprocessing()
         vector = self.key_vector.vector
         self.assertEqual([1 / 226], vector[0])
+
+    def test_repository(self):
+        self.key_repository.store(self.key_vector, '0', False)
+        self.assertTrue(isinstance(self.key_repository.find('0'), list))
+        self.assertTrue(isinstance(self.key_repository.tags, list))
