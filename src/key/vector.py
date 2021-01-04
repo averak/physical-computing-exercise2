@@ -1,29 +1,29 @@
 import copy
 import numpy as np
 
-from . import DEFAULT_LENGTH
+from . import DEFAULT_DIM
 
 
 class KeyVector:
-    def __init__(self, length=DEFAULT_LENGTH, vector=None):
+    def __init__(self, dim=DEFAULT_DIM, vector=None):
         if vector is None:
-            self._length = length
+            self._dim = dim
             self._vector = []
         else:
-            self._length = len(vector)
+            self._dim = len(vector)
             self._vector = list(vector)
-        self._cnt = 0
+        self._length = 0
 
         self.reset()
 
     def reset(self):
         self._vector = []
-        self._cnt = 0
+        self._length = 0
 
     def push(self, key: int):
-        if self.cnt < self.length:
+        if self.length < self.dim:
             self._vector.append(key)
-            self._cnt += 1
+            self._length += 1
 
     def preprocessing(self):
         max_key = 226
@@ -39,15 +39,15 @@ class KeyVector:
             self._vector = proc(lambda key: key / max_key)
 
     @property
-    def length(self):
-        return self._length
+    def dim(self):
+        return self._dim
 
     @property
     def vector(self):
         result = copy.deepcopy(self._vector)
-        result += [0] * (self.length - self.cnt)
-        return np.array(result)
+        result += [0] * (self.dim - self.length)
+        return np.array(result)[:self.dim]
 
     @property
-    def cnt(self):
-        return self._cnt
+    def length(self):
+        return self._length

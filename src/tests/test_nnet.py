@@ -2,12 +2,12 @@ import unittest
 import numpy as np
 import nnet
 
-from key import DEFAULT_LENGTH
+from key import DEFAULT_DIM
 
 
 class TestNnet(unittest.TestCase):
     def setUp(self):
-        self.length = DEFAULT_LENGTH
+        self.dim = DEFAULT_DIM
         self.n_class = 10
         self.model = nnet.Model(model_file='test.h5')
 
@@ -16,11 +16,11 @@ class TestNnet(unittest.TestCase):
         x = []
         y = []
         for i in range(20):
-            x.append([np.random.rand() for _ in range(self.length)])
+            x.append([np.random.rand() for _ in range(self.dim)])
             y.append(i % self.n_class)
 
         self.model.train(x, y, save_weights=True)
 
     def test_predict(self):
-        sample_x = [np.random.rand() for _ in range(self.length)]
+        sample_x = [np.random.rand() for _ in range(self.dim)]
         self.model.predict(sample_x)
