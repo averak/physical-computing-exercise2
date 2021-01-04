@@ -1,5 +1,6 @@
 import unittest
 import numpy as np
+
 from key.vector import KeyVector
 from key.repository import KeyRepository
 
@@ -39,3 +40,10 @@ class TestKey(unittest.TestCase):
         self.key_repository.store(self.key_vector, '0', False)
         self.assertTrue(isinstance(self.key_repository.find('0'), list))
         self.assertTrue(isinstance(self.key_repository.tags, list))
+
+    @unittest.skip('TESTSKIP')
+    def test_event_viewer(self):
+        from key.event_viewer import EventViewer
+        viewer = EventViewer()
+        print('start!')
+        viewer.start()

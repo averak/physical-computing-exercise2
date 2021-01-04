@@ -1,6 +1,7 @@
 import unittest
 import numpy as np
 import nnet
+
 from key import DEFAULT_LENGTH
 
 
