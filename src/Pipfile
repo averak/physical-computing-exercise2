@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 numpy = "*"
 tensorflow = "*"
+pyserial = "*"
 
 [dev-packages]
 flake8 = "*"

@@ -18,6 +18,7 @@ parser.add_argument('--train', help='execute training',
 parser.add_argument('--infer', help='infer the entered chars',
                     action='store_true')
 parser.add_argument('--dim', help='key vector dim', type=int)
+parser.add_argument('--port', help='serial port', type=str)
 args = parser.parse_args()
 
 # ロギング
@@ -79,16 +80,23 @@ if args.infer:
         model_file='model.h5',
     )
 
+    import serial
+    ser = serial.Serial(args.port, 9600)
+
     while True:
         try:
             logging.info('Please enter some char...')
+
             vector = key_event_viewer.record()
             vector.preprocessing()
             vector.dim = dim
-            label = model.predict(vector.vector)
-            logging.info('You entered <%s>, right?' % tags[label])
+
+            char = tags[model.predict(vector.vector)]
+            logging.info('You entered <%s>, right?' % char)
+            ser.write(char.encode())
 
         except KeyboardInterrupt:
+            ser.close()
             break
 
 exit(0)
