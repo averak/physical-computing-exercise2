@@ -12,15 +12,18 @@ class KeyVector:
         else:
             self._length = len(vector)
             self._vector = list(vector)
+        self._cnt = 0
 
         self.reset()
 
     def reset(self):
         self._vector = []
+        self._cnt = 0
 
     def push(self, key: int):
-        if len(self._vector) < self.length:
+        if self.cnt < self.length:
             self._vector.append(key)
+            self._cnt += 1
 
     def preprocessing(self):
         max_key = 226
@@ -42,5 +45,9 @@ class KeyVector:
     @property
     def vector(self):
         result = copy.deepcopy(self._vector)
-        result += [0] * (self.length - len(result))
+        result += [0] * (self.length - self.cnt)
         return np.array(result)
+
+    @property
+    def cnt(self):
+        return self._cnt

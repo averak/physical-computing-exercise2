@@ -25,6 +25,7 @@ class TestKey(unittest.TestCase):
         self.assertEqual(100, vector[0])
         self.assertEqual(200, vector[1])
         self.assertEqual(300, vector[2])
+        self.assertEqual(3, self.key_vector.cnt)
 
     def test_preprocessing(self):
         self.key_vector.reset()
