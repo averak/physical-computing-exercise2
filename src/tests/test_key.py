@@ -46,5 +46,4 @@ class TestKey(unittest.TestCase):
     def test_event_viewer(self):
         from key.event_viewer import EventViewer
         viewer = EventViewer()
-        print('start!')
-        viewer.start()
+        print(viewer.start().vector)
