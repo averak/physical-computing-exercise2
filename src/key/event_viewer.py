@@ -36,7 +36,7 @@ class EventViewer:
             self._vector.push(ord(key))
             self._time = time.time()
 
-    def start(self, limit=0.4, min_length=3):
+    def record(self, limit=0.4, min_length=3):
         self._run_event.set()
         thread = threading.Thread(target=self._key_viewer)
         thread.start()
