@@ -33,6 +33,30 @@ $ pipenv install
 
 See `scripts` section of [Pipfile](./src/Pipfile)
 
-* `pipenv run test`
-* `pipenv run format`
-* `pipenv run lint`
+- `pipenv run test`
+- `pipenv run format`
+- `pipenv run lint`
+
+### Show help
+
+```sh
+$ ./app.py -h
+```
+
+### Record teacher data
+
+```sh
+$ ./app.py --record
+```
+
+### Training
+
+```sh
+$ ./app.py --train # --dim <DIM>
+```
+
+### Infer
+
+```sh
+$ ./app.py --infer --port <serial port> # --dim <DIM>
+```
