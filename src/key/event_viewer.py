@@ -1,7 +1,8 @@
 import sys
+import termios
 import time
 import threading
-import getch
+import pyautogui as pgui
 
 from .vector import KeyVector
 from . import DEFAULT_DIM
@@ -12,25 +13,34 @@ class EventViewer:
         self._vector = KeyVector(dim)
         self._time = time.time()
 
-        thread = threading.Thread(target=self._key_viewer)
-        thread.start()
-        self._start_input = False
+        self._run_event = threading.Event()
+        self._run_event.clear()
+
+    def _input_key(self):
+        fd = sys.stdin.fileno()
+        old = termios.tcgetattr(fd)
+        new = termios.tcgetattr(fd)
+
+        new[3] &= ~termios.ICANON
+        new[3] &= ~termios.ECHO
+
+        termios.tcsetattr(fd, termios.TCSANOW, new)
+        result = sys.stdin.read(1)
+        termios.tcsetattr(fd, termios.TCSANOW, old)
+
+        return result
 
     def _key_viewer(self):
-        while True:
-            key = getch.getch()
-
-            if self._start_input:
-                self._vector.push(ord(key))
-                self._time = time.time()
-
-            # esc -> exit!
-            if key == '\x1b':
-                break
+        while self._run_event.is_set():
+            key = self._input_key()
+            self._vector.push(ord(key))
+            self._time = time.time()
 
     def start(self, limit=0.4, min_length=3):
+        self._run_event.set()
+        thread = threading.Thread(target=self._key_viewer)
+        thread.start()
         self._vector.reset()
-        self._start_input = True
 
         # キー入力完了まで待機
         self._time = time.time()
@@ -45,6 +55,7 @@ class EventViewer:
 
             time.sleep(0.01)
 
-        self._start_input = False
+        self._run_event.clear()
+        pgui.typewrite(' ')
 
         return self._vector
