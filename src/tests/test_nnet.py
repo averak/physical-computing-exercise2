@@ -11,6 +11,7 @@ class TestNnet(unittest.TestCase):
         self.n_class = 10
         self.model = nnet.Model(model_file='test.h5', n_class=self.n_class)
 
+    @unittest.skip('TESTSKIP')
     def test_train_nnet(self):
         # 適当なデータセットを作成
         x = []

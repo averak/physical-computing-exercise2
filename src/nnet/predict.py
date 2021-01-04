@@ -2,4 +2,5 @@ import numpy as np
 
 
 def predict(model, x):
-    return np.argmax(model.predict([list(x)])[0])
+    pred = model.predict(x.reshape(-1, x.shape[0]))[0]
+    return np.argmax(pred)

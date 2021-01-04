@@ -84,8 +84,9 @@ if args.infer:
             logging.info('Please enter some char...')
             vector = key_event_viewer.record()
             vector.preprocessing()
-            char = tags[model.predict(vector.vector)]
-            logging.info('You entered %s, right?' % char)
+            vector.dim = dim
+            label = model.predict(vector.vector)
+            logging.info('You entered <%s>, right?' % tags[label])
 
         except KeyboardInterrupt:
             break

@@ -9,12 +9,11 @@ class KeyVector:
         if vector is None:
             self._dim = dim
             self._vector = []
+            self.reset()
         else:
             self._dim = len(vector)
             self._vector = list(vector)
-        self._length = 0
-
-        self.reset()
+            self._length = self._dim
 
     def reset(self):
         self._vector = []
@@ -50,7 +49,7 @@ class KeyVector:
     def vector(self):
         result = copy.deepcopy(self._vector)
         result += [0] * (self.dim - self.length)
-        return np.array(result)[:self.dim]
+        return np.array(result, dtype=np.float32)[:self.dim]
 
     @property
     def length(self):

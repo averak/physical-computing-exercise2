@@ -23,7 +23,7 @@ class Model:
     def predict(self, x):
         from .predict import predict
 
-        return np.argmax(predict(self.__nnet, x))
+        return predict(self.__nnet, x)
 
     @property
     def model_path(self):

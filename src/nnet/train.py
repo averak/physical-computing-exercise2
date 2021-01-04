@@ -3,10 +3,10 @@ import numpy as np
 
 def train_nnet(model, x, y, save_weights=False, model_path=None):
     model.fit(
-        np.array(x),
-        np.array(y),
+        np.array(x, np.float32),
+        np.array(y, np.uint8),
         batch_size=32,
-        epochs=20,
+        epochs=1000,
         validation_split=0.1,
     )
 
