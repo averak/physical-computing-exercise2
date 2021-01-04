@@ -9,7 +9,7 @@ class TestNnet(unittest.TestCase):
     def setUp(self):
         self.dim = DEFAULT_DIM
         self.n_class = 10
-        self.model = nnet.Model(model_file='test.h5')
+        self.model = nnet.Model(model_file='test.h5', n_class=self.n_class)
 
     def test_train_nnet(self):
         # 適当なデータセットを作成
@@ -23,4 +23,4 @@ class TestNnet(unittest.TestCase):
 
     def test_predict(self):
         sample_x = [np.random.rand() for _ in range(self.dim)]
-        self.model.predict(sample_x)
+        self.model.predict(np.array(sample_x))

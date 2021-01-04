@@ -3,13 +3,13 @@ import numpy as np
 
 
 class Model:
-    def __init__(self, vec_length=30, n_class=10, load_weights=False, model_file='nnet.h5'):
+    def __init__(self, vec_dim=30, n_class=10, load_weights=False, model_file='nnet.h5'):
         self.__model_path = '%s/ckpt/%s' % (
             os.path.dirname(__file__), model_file)
 
         from .make import make_nnet
 
-        self.__nnet = make_nnet((vec_length,), n_class,
+        self.__nnet = make_nnet((vec_dim,), n_class,
                                 load_weights, self.model_path)
 
     def train(self, x, y, save_weights=False):
