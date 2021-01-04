@@ -42,6 +42,10 @@ class KeyVector:
     def dim(self):
         return self._dim
 
+    @dim.setter
+    def dim(self, dim: int):
+        self._dim = dim
+
     @property
     def vector(self):
         result = copy.deepcopy(self._vector)
