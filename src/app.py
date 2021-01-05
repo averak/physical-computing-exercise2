@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import argparse
 import logging
+import serial
 
 import nnet
 
@@ -80,8 +81,9 @@ if args.infer:
         model_file='model.h5',
     )
 
-    import serial
-    ser = serial.Serial(args.port, 9600)
+    is_serial_alive = args.port is not None
+    if is_serial_alive:
+        ser = serial.Serial(args.port, 9600)
 
     while True:
         try:
@@ -93,10 +95,12 @@ if args.infer:
 
             char = tags[model.predict(vector.vector)]
             logging.info('You entered <%s>, right?' % char)
-            ser.write(char.encode())
+            if is_serial_alive:
+                ser.write(char.encode())
 
         except KeyboardInterrupt:
-            ser.close()
+            if is_serial_alive:
+                ser.close()
             break
 
 exit(0)
