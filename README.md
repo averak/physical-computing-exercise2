@@ -40,23 +40,31 @@ See `scripts` section of [Pipfile](./src/Pipfile)
 ### Show help
 
 ```sh
-$ ./app.py -h
+$ pipenv run ./app.py -h
 ```
 
 ### Record teacher data
 
 ```sh
-$ ./app.py --record
+$ pipenv run ./app.py --record
 ```
 
 ### Training
 
 ```sh
-$ ./app.py --train # --dim <DIM>
+$ pipenv run ./app.py --train # --dim <DIM>
 ```
 
 ### Infer
 
+If you want to turn on the LED by Arduino, you need to specify the `--port` option.
+
+Before that, you need to upload the [program](./src/led/led.ino) to Arduino.
+
 ```sh
-$ ./app.py --infer --port <serial port> # --dim <DIM>
+$ pipenv run ./app.py --infer --port <serial port> # --dim <DIM>
 ```
+
+## References
+
+- [Gboard 物理手書きバージョン](https://landing.google.co.jp/tegaki/)
