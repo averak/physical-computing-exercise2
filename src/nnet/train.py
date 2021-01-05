@@ -6,7 +6,7 @@ def train_nnet(model, x, y, save_weights=False, model_path=None):
         np.array(x, np.float32),
         np.array(y, np.uint8),
         batch_size=32,
-        epochs=1000,
+        epochs=200,
         validation_split=0.1,
     )
 
